@@ -39,13 +39,16 @@ isPrimeNumber()
 
 //exercise 4
 function isAbleToSum(x,y){
-    while(y % x === 0){
-        y++ //just for stopping the loop
-        console.log(true)
+    let sum = x
+    while(sum<=y){
+      if(sum===y){
+          return true
+      }
+      sum = sum + x
     }
     return false
 }
-isAbleToSum(4,12) // true false
+isAbleToSum(4,12) 
 
 //without loop
 function isAbleToSum(x,y){
