@@ -1,1 +1,1 @@
-# loops-exercise
+# JS-exercises
