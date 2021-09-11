@@ -8,6 +8,12 @@
     <title>Dom exercise</title>
     <style>
         h3{color: palevioletred;}
+        .hide{display: none ;}
+        .bc{background: linear-gradient(to right, #ffafbd, #ffc3a0); }
+        .gr{background-color: green;}
+        .bl{background-color: blue;}
+        .rd{background-color: red;}
+        .yl{background-color: yellow;}
     </style>
 </head>
 
@@ -16,21 +22,136 @@
     <h2 class="product">this is product something</h2>
     <button class="buy" onclick="clickToBuy()">BUY NOW</button>
 
+    <br/>
     <!--exercise 2-->
-    <button class="loveMeNot" onclick="doYouLoveMe()">do you love me?</button>
-    <h3 class="loveMe"></h3>
+    <button class="loveMeNot" onclick="doYouLoveMe()">do you love me? </button>
+    <div class= "hide loveMe">I LOVE YOU</div>
+    <div class= "hide iDont">I DONT LOVE YOU</div>
+    
+    <br/>
+    <!--exercise 3-->
+    <button class="clickToChange" onclick="changeColor()" >CHANGE BACKROND COLOR!</button>
+
+    <br/>
+    <!--exercise 4-->
+    <select name="colors" id="colors" onchange="pickColor()">
+        <option value="green">green</option>
+        <option value="blue">blue</option>
+        <option value="red">red</option>
+        <option value="yellow">yellow</option> 
+    </select>
+
+    <br/>
+    <!--exercise 5-->
+    <button onclick="minusOne()">minus 1</button>
+    <button onclick="plusOne()">plus 1</button>
+    <div class="num">0</div>
+
+    <br/>
+    <!--exercise 6-->
+    <div class="isEmailexist"> 
+    <label for="email">email:</label>
+    <input type="text" class="email"/>
+    <button class="isAvailable" onclick="checkAvailability()">check availability</button>
+    <h2 class="res"></h2>
+    </div>
+
     <script>
         //exercise 1
         const buy = document.querySelector('button.buy');
-        console.log(buy)
-        function clickToBuy(){
+        function clickToBuy() {
             buy.innerHTML = "<h3>sorry, this item is out of stock</h3>"
         }
+        
         //exercise 2
-        const loveMeNot = document.querySelector('button.loveMeNot');
+        const loveMe = document.querySelector('div.loveMe')
+        const iDont = document.querySelector('div.iDont')
+        let love = true;
         function doYouLoveMe(){
-            
+            if(!love){
+                iDont.classList.remove('hide')
+                loveMe.classList.add('hide')
+                love = true;
+            }else{
+                iDont.classList.add('hide')
+                loveMe.classList.remove('hide')
+                love = false;
+            }
         }
+
+        //exercise 3
+        const body = document.querySelector('body')
+        const clickToChange = document.querySelector('button.clickToChange')
+        function changeColor(){
+            body.classList.add('bc')
+        }
+
+        //exercise 4
+        const colors = document.querySelector('#colors');
+        function pickColor(){
+            switch(colors.value){
+                case 'green':
+                    body.classList.add('gr')
+                    body.classList.remove('bl')
+                    body.classList.remove('rd')
+                    body.classList.remove('yl')
+                    break;
+                case 'blue':
+                    body.classList.add('bl')
+                    body.classList.remove('gr')
+                    body.classList.remove('rd')
+                    body.classList.remove('yl')
+                    break;
+                case 'red':
+                    body.classList.add('rd')
+                    body.classList.remove('bl')
+                    body.classList.remove('gr')
+                    body.classList.remove('yl')
+                    break;
+                case 'yellow':
+                    body.classList.add('yl')
+                    body.classList.remove('gr')
+                    body.classList.remove('bl')
+                    body.classList.remove('rd')
+                    break;
+            }
+        }
+
+        //exercise 5
+        const num = document.querySelector('.num');
+        function minusOne(){
+            num.innerHTML--
+
+        }
+        function plusOne(){
+            num.innerHTML++
+
+        }
+
+        //exercise 6 
+        const email = document.querySelector('input.email');
+        const res = document.querySelector('h2.res');
+        const isAvailable = document.querySelector('button.isAvailable');
+
+        const emailList = [
+            "queen@gmail.com",
+            "leoDicaprio@gmail.com",
+            "elonMusk@gmail.com",
+        ]
+        const emailVal = email.value;
+        const resText = res.innerText;
+        
+        function checkAvailability(emailVal){
+            for(let i = 0; i < emailList; i++){
+                if(emailVal === emailList[i]){
+                    resText = "im sorry, already taken"
+                }else{
+                    resText = "we are good to go"
+                }
+            }
+            return resText;
+        }
+
     </script>
 
 </body>
