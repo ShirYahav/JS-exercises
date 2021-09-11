@@ -1,1 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom exercise</title>
+    <style>
+        h3{color: palevioletred;}
+    </style>
+</head>
+
+<body>
+    <!-- exercise 1 -->
+    <h2 class="product">this is product something</h2>
+    <button class="buy" onclick="clickToBuy()">BUY NOW</button>
+
+    <!--exercise 2-->
+    <button class="loveMeNot" onclick="doYouLoveMe()">do you love me?</button>
+    <h3 class="loveMe"></h3>
+    <script>
+        //exercise 1
+        const buy = document.querySelector('button.buy');
+        console.log(buy)
+        function clickToBuy(){
+            buy.innerHTML = "<h3>sorry, this item is out of stock</h3>"
+        }
+        //exercise 2
+        const loveMeNot = document.querySelector('button.loveMeNot');
+        function doYouLoveMe(){
+            
+        }
+    </script>
+
+</body>
+
+</html>
