@@ -14,6 +14,8 @@
         .bl{background-color: blue;}
         .rd{background-color: red;}
         .yl{background-color: yellow;}
+        .inputBorderOK{border-style: solid; border-color: green; border-width: 5px;}
+        .inputBorderTaken{border-style: solid; border-color: red; border-width: 5px;}
     </style>
 </head>
 
@@ -49,10 +51,10 @@
 
     <br/>
     <!--exercise 6-->
-    <div class="isEmailexist"> 
+    <div class="isEmailExist"> 
     <label for="email">email:</label>
-    <input type="text" class="email"/>
-    <button class="isAvailable" onclick="checkAvailability()">check availability</button>
+    <input type="email" class="email"/>
+    <button class="isAvailable" onclick="checkAvailability(emailsList)">check availability</button>
     <h2 class="res"></h2>
     </div>
 
@@ -129,27 +131,30 @@
         }
 
         //exercise 6 
-        const email = document.querySelector('input.email');
+        const emailInput = document.querySelector('input');
         const res = document.querySelector('h2.res');
         const isAvailable = document.querySelector('button.isAvailable');
 
-        const emailList = [
+        const emailsList = [
             "queen@gmail.com",
             "leoDicaprio@gmail.com",
             "elonMusk@gmail.com",
+            "love@gmail.com"
         ]
-        const emailVal = email.value;
-        const resText = res.innerText;
         
-        function checkAvailability(emailVal){
-            for(let i = 0; i < emailList; i++){
-                if(emailVal === emailList[i]){
-                    resText = "im sorry, already taken"
+        function checkAvailability(emails){
+            for(let i = 0; i < emails.length; i++){
+                if(emailInput.value === emails[i]){
+                    emailInput.classList.add('inputBorderTaken');
+                    emailInput.classList.remove('inputBorderOK');
+                    res.innerHTML = "were sorry, already taken"
                 }else{
-                    resText = "we are good to go"
+                    emailInput.classList.remove('inputBorderTaken');
+                    emailInput.classList.add('inputBorderOK');
+                    res.innerHTML = "we are good to go";
                 }
             }
-            return resText;
+            return res.innerHTML;
         }
 
     </script>
