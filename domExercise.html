@@ -147,14 +147,12 @@
                 if(emailInput.value === emails[i]){
                     emailInput.classList.add('inputBorderTaken');
                     emailInput.classList.remove('inputBorderOK');
-                    res.innerHTML = "were sorry, already taken"
-                }else{
+                    return res.innerHTML = "were sorry, already taken";
+                }
                     emailInput.classList.remove('inputBorderTaken');
                     emailInput.classList.add('inputBorderOK');
                     res.innerHTML = "we are good to go";
-                }
             }
-            return res.innerHTML;
         }
 
     </script>
