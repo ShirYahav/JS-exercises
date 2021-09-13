@@ -10,10 +10,10 @@
         h3{color: palevioletred;}
         .hide{display: none ;}
         .bc{background: linear-gradient(to right, #ffafbd, #ffc3a0); }
-        .gr{background-color: green;}
-        .bl{background-color: blue;}
-        .rd{background-color: red;}
-        .yl{background-color: yellow;}
+        .green{background-color: green;}
+        .blue{background-color: blue;}
+        .red{background-color: red;}
+        .yellow{background-color: yellow;}
         .inputBorderOK{border-style: solid; border-color: green; border-width: 5px;}
         .inputBorderTaken{border-style: solid; border-color: red; border-width: 5px;}
     </style>
@@ -89,34 +89,45 @@
         }
 
         //exercise 4
-        const colors = document.querySelector('#colors');
+       const colors = document.querySelector('#colors');
+        // function pickColor2(){
+        //   switch(colors.value){
+        //         case 'green':
+        //             body.classList.add('gr')
+        //             body.classList.remove('bl')
+        //             body.classList.remove('rd')
+        //             body.classList.remove('yl')
+        //             break;
+        //         case 'blue':
+        //             body.classList.add('bl')
+        //             body.classList.remove('gr')
+        //             body.classList.remove('rd')
+        //             body.classList.remove('yl')
+        //             break;
+        //         case 'red':
+        //             body.classList.add('rd')
+        //             body.classList.remove('bl')
+        //             body.classList.remove('gr')
+        //             body.classList.remove('yl')
+        //             break;
+        //         case 'yellow':
+        //             body.classList.add('yl')
+        //             body.classList.remove('gr')
+        //             body.classList.remove('bl')
+        //             body.classList.remove('rd')
+        //             break;
+        //     }
+        // }
+
+        let lastSelected
+        const colorMap = {gr: 'green'} //etccc...
         function pickColor(){
-            switch(colors.value){
-                case 'green':
-                    body.classList.add('gr')
-                    body.classList.remove('bl')
-                    body.classList.remove('rd')
-                    body.classList.remove('yl')
-                    break;
-                case 'blue':
-                    body.classList.add('bl')
-                    body.classList.remove('gr')
-                    body.classList.remove('rd')
-                    body.classList.remove('yl')
-                    break;
-                case 'red':
-                    body.classList.add('rd')
-                    body.classList.remove('bl')
-                    body.classList.remove('gr')
-                    body.classList.remove('yl')
-                    break;
-                case 'yellow':
-                    body.classList.add('yl')
-                    body.classList.remove('gr')
-                    body.classList.remove('bl')
-                    body.classList.remove('rd')
-                    break;
+            const colorMapped = colorMap[colors.value]
+            if(lastSelected){
+                body.classList.remove(lastSelected)
             }
+            body.classList.add(colors.value)
+            lastSelected = colors.value
         }
 
         //exercise 5
@@ -143,17 +154,41 @@
         ]
         
         function checkAvailability(emails){
+            // or here
+            // emailInput.classList.remove('inputBorderTaken'); 
+            // emailInput.classList.add('inputBorderOK');
+            //res.innerHTML = "we are good to go";
             for(let i = 0; i < emails.length; i++){
                 if(emailInput.value === emails[i]){
                     emailInput.classList.add('inputBorderTaken');
                     emailInput.classList.remove('inputBorderOK');
-                    return res.innerHTML = "were sorry, already taken";
+                    res.innerHTML = "were sorry, already taken";
+                    return
                 }
-                    emailInput.classList.remove('inputBorderTaken');
-                    emailInput.classList.add('inputBorderOK');
-                    res.innerHTML = "we are good to go";
             }
+            // supposed to be here
+               // emailInput.classList.remove('inputBorderTaken'); 
+               // emailInput.classList.add('inputBorderOK');
+               //res.innerHTML = "we are good to go";
         }
+
+        function checkAvailability(arr,email) {
+            for(let i = 0; i < arr.length; i++){
+                if(arr[i] === email){
+                    return true
+                }
+            }
+            return false;
+        }
+
+        function doesEmailExist(){
+            const email = emailInput.value;
+            const exists = checkAvailability(emailsList,email);
+            const res = document.querySelector('h2.res');
+            res.innerHTML = exists ? 'not available' : 'available' 
+        }
+
+
 
     </script>
 
