@@ -1,1 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form</title>
+    <style>
+        body {
+            padding: 30px;
+        }
+        .property label{
+            min-width: 100px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        table {
+            border: 1px solid gray;
+        }
 
+        tr {
+            border: 1px solid gray;
+        }
+
+        td {
+            padding: 3px 5px;
+            border-right: 1px solid gray;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <div class="property">
+            <label for="id">ID</label>
+            <input type="number" name="id"/>
+        </div>
+        <div class="property">
+            <label for="firstName">First Name</label>
+            <input type="text" name="firstName"/>
+        </div>
+        <div class="property">
+            <label for="lastName">Last Name</label>
+            <input type="text" name="lastName"/>
+        </div>
+        <div class="property">
+            <label for="hobby">hobby</label>
+                <select name="hobby">
+                    <option>select a hobby</option>
+                    <option value="painting">painting</option>
+                    <option value="playingGuitar">playing the guitar</option>
+                    <option value="other">other</option>
+                </select>
+        </div>
+        <div class="property">
+            <label for="Gender">Gender</label>
+        
+            <input type="radio" id="female" name="gender"/>
+            <label for="female">female</label>
+        
+            <input type="radio" id="male" name="gender"/>
+            <label for="male">male</label>
+        </div>
+        <div class="property">
+            <label for="profileUrl">URL</label>
+            <input type="text" name="profileUrl" src="">
+        </div>
+        <button onclick="add()">Add</button>
+        <div class = "list"></div>
+    </form>
+
+    <script>
+        //function to add details to an objects
+        const people = []
+        const properties = [
+            'id',
+            'firstName',
+            'lastName',
+            'hobby',
+            'gender',
+            'profileUrl'
+        ]
+        
+        function add(){
+            event.preventDefault()//come back to the later
+            const person = {}
+            const form = document.querySelector('form')
+            for (let property of properties) {
+                person[property] = form.elements[property].value
+            }
+            people.push(person); //you can push only to an array!!
+            console.log(people)
+        }
+
+        function createTd(text){
+            const td = document.createElement('td');
+            td.innerHTML = text
+            return td
+        }
+
+        function createTr(obj){
+            const tr = document.createElement('tr');
+            for (let property in obj) {
+                let td
+                td = createTd(obj[property]) //value of property
+                tr.appendChild(td)// td will be the child of tr 
+            }
+            return tr;
+        }
+
+        function createTable(arrOfobjects){
+            const table = document.createElement('table')
+            for(obj of arrOfobjects){
+                const tr = createTr(obj)
+                table.appendChild(tr)
+            }
+            return table
+        }
+
+        function renderTable(){
+            const table = createTable(people)
+            const container = document.querySelector('div.list')
+            container.innerHTML = ''
+            container.appendChild(table)
+        }   
+
+        renderTable();
+
+    </script>
+</body>
+</html>
