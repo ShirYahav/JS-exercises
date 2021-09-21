@@ -26,27 +26,32 @@
             padding: 3px 5px;
             border-right: 1px solid gray;
         }
+        img{
+            width: 100px;
+            height: 100px;
+        }
     </style>
 </head>
 
 <body>
     <form>
+        <!-- <div name="edit"></div> -->
         <div class="property">
             <label for="id">ID</label>
-            <input type="number" name="id"/>
+            <input type="number" name="id" class="id"/>
         </div>
         <div class="property">
             <label for="firstName">First Name</label>
-            <input type="text" name="firstName"/>
+            <input type="text" name="firstName" required/>
         </div>
         <div class="property">
             <label for="lastName">Last Name</label>
-            <input type="text" name="lastName"/>
+            <input type="text" name="lastName" required/>
         </div>
         <div class="property">
             <label for="hobby">hobby</label>
-                <select name="hobby">
-                    <option>select a hobby</option>
+                <select name="hobby" required>
+                    <option value="select">select a hobby</option>
                     <option value="painting">painting</option>
                     <option value="playingGuitar">playing the guitar</option>
                     <option value="other">other</option>
@@ -55,77 +60,21 @@
         <div class="property">
             <label for="Gender">Gender</label>
         
-            <input type="radio" id="female" name="gender"/>
+            <input type="radio" id="female" name="gender" required/>
             <label for="female">female</label>
         
-            <input type="radio" id="male" name="gender"/>
+            <input type="radio" id="male" name="gender" required/>
             <label for="male">male</label>
         </div>
         <div class="property">
             <label for="profileUrl">URL</label>
-            <input type="text" name="profileUrl" src="">
+            <input type="text" name="profileUrl" required>
         </div>
-        <button onclick="add()">Add</button>
+        <div class="errorInFields"></div>
+        <button class="addButton" onclick="add()">Add</button>
         <div class = "list"></div>
     </form>
 
-    <script>
-        //function to add details to an objects
-        const people = []
-        const properties = [
-            'id',
-            'firstName',
-            'lastName',
-            'hobby',
-            'gender',
-            'profileUrl'
-        ]
-        
-        function add(){
-            event.preventDefault()//come back to the later
-            const person = {}
-            const form = document.querySelector('form')
-            for (let property of properties) {
-                person[property] = form.elements[property].value
-            }
-            people.push(person); //you can push only to an array!!
-            console.log(people)
-        }
-
-        function createTd(text){
-            const td = document.createElement('td');
-            td.innerHTML = text
-            return td
-        }
-
-        function createTr(obj){
-            const tr = document.createElement('tr');
-            for (let property in obj) {
-                let td
-                td = createTd(obj[property]) //value of property
-                tr.appendChild(td)// td will be the child of tr 
-            }
-            return tr;
-        }
-
-        function createTable(arrOfobjects){
-            const table = document.createElement('table')
-            for(obj of arrOfobjects){
-                const tr = createTr(obj)
-                table.appendChild(tr)
-            }
-            return table
-        }
-
-        function renderTable(){
-            const table = createTable(people)
-            const container = document.querySelector('div.list')
-            container.innerHTML = ''
-            container.appendChild(table)
-        }   
-
-        renderTable();
-
-    </script>
+    <script src="formExercise.js"></script>
 </body>
 </html>
