@@ -1,7 +1,6 @@
 //const errorInFields = document.querySelector('div.errorInFields');
 //const emptyfields = document.createElement('h3')
 const people = []
-const person = {}
 const properties = [
     'id',
     'firstName',
@@ -12,15 +11,16 @@ const properties = [
 ]
 const headers = {
     id: 'id',
-    firstName: 'firstName',
-    laststName: 'laststName',
-    hobi: 'hobi',
+    firstName: 'first Name',
+    laststName: 'last tName',
+    hobby: 'hobby',
     gender: 'gender',
     ProfileUrl: 'profileUrl',
 }
 
 function add() {
     event.preventDefault()//come back to the later
+    const person = {}
     const form = document.querySelector('form')
     for (let property of properties) {
         person[property] = form.elements[property].value
@@ -72,21 +72,30 @@ function createTable(arrOfobjects) {
     table.appendChild(tableHeaders)
     for (obj of arrOfobjects) {
         const tr = createTr(obj)
-        const tdEdit = createTd("<button onclick=edit(\""+ obj.id +"\")>Edit</button>")
+        const tdEdit = createTd("<button onclick='edit(\""+ obj.id +"\")'>Edit</button>")
         tr.appendChild(tdEdit)
         table.appendChild(tr)
     }
     return table
 }
 
+const updateButton = document.querySelector('div.updateButton')
 function edit(personId){
     event.preventDefault()
+    const form = document.querySelector('form')
+    const addButton = document.querySelector('button.addButton')
+    addButton.classList.add('invert')
+    console.log(form.classList)
     console.log(personId)
-    for(let person of people){
-        if(person.id === personId){
-            console.log(person)
+    for (let person of people) {
+        if(personId === person.id){
+            for(property of person){
+                form.elements[property] = person[property]
+            }
         }
     }
+    updateButton.innerHTML = "<button class='update' onclick='update(" +personId+ ")'>update</button>"
+    form.appendChild(updateButton)
 }
 
 function renderTable() {
