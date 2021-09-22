@@ -80,7 +80,7 @@ function createTable(arrOfobjects) {
 }
 
 function edit(personId){
-    debugger
+    event.preventDefault()
     console.log(personId)
     for(let person of people){
         if(person.id === personId){
