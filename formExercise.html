@@ -30,6 +30,9 @@
             width: 100px;
             height: 100px;
         }
+        .hidden{
+            display: none;
+        }
     </style>
 </head>
 
@@ -72,8 +75,9 @@
         </div>
         <div class="errorInFields"></div>
         <button class="addButton" onclick="add()">Add</button>
-        <div class = "list"></div>
+        <button class="updateButton hidden" onclick="update()">update</button>
     </form>
+        <div class = "list"></div>
 
     <script src="formExercise.js"></script>
 </body>
