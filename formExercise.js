@@ -161,3 +161,4 @@ function renderTable() {
     container.appendChild(table)
 }
 //renderTable(); //if i already have a person so it will render
+//complete delete button and required fields
