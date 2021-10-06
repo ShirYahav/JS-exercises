@@ -5,26 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>groceries</title>
+    <link href="groceriesForm.css" rel="styleSheet">
 </head>
 <body>
-    <form>
-      <div>
-          <label for="productNo"></label>
-          <input type="text" name="productNo" id="productNo"/>
-      </div>
-      <div>
-        <label for="productName"></label>
-        <input type="text" name="productName" id="productName"/>
-      </div>
-      <div>
-        <label for="productPrice"></label>
-        <input type="text" name="productPrice" id="productPrice"/>
-      </div>
-      <div>
-        <label for="productUrl"></label>
-        <input type="text" name="productUrl" id="productUrl"/>
-      </div>
-    </form>
-    <button type="button">Add Product</button>
+    <div class="formStyle">
+        <form>
+            <div>
+                <label for="productNo">product Number</label>
+                <input type="text" name="productNo" id="productNo" />
+            </div>
+            <div>
+                <label for="productName">product Name</label>
+                <input type="text" name="productName" id="productName" />
+            </div>
+            <div>
+                <label for="productPrice">product Price</label>
+                <input type="text" name="productPrice" id="productPrice" />
+            </div>
+            <div>
+                <label for="productUrl">product Url</label>
+                <input type="text" name="productUrl" id="productUrl" />
+            </div>
+        </form>
+        <button type="button" class="addProduct" onclick="addProduct()">Add Product</button>
+        <button type="button" class="updateProduct hidden" onclick="updateProduct()">update Product</button>
+    </div>
+    <div class="listOfDetails">
+
+    </div>
+    <script src="groceriesForm.js"></script>
 </body>
 </html>

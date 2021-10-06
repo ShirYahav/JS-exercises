@@ -1,0 +1,30 @@
+div.formStyle{
+    border: 1px solid black;
+    width: 400px;
+}
+input{
+    margin: 15px;
+}
+label{
+    padding: 10px;
+    width: 150px;
+    display: inline-block;
+}
+form {
+    margin: auto;
+}
+button{
+    margin: 15px;
+}
+.productDetails{
+    border: 1px solid black;
+    width: 120px;
+    text-align: center;
+}
+div img{
+    height: 100px;
+    width: 60px;
+}
+button.hidden{
+    display: none;
+}
